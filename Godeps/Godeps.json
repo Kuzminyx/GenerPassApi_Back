@@ -1,0 +1,12 @@
+{
+	"ImportPath": "github.com/GeneratePassAPI",
+	"GoVersion": "go1.17",
+	"GodepVersion": "v80",
+	"Deps": [
+		{
+			"ImportPath": "github.com/mattn/go-sqlite3",
+			"Comment": "v2.0.6",
+			"Rev": "baaf8a978416040e7f2d00ac36e345098d0588d8"
+		}
+	]
+}

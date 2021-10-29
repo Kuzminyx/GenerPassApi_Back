@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <title>Sign In</title>
+            <meta charset="utf-8">
+            <link rel="shortcut icon" href="static\image\LL.ico" type="image/x-icon">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+            <script src="static\scripts\menu.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+        </head>
+        <body>
+            <!-- меню -->
+            <div class="container">
+                <div class="d-flex flex-column align-items-center">
+                    <!-- логин -->
+                    <div class="form-group">
+                        <label  for="login">Login:</label>
+                        <input id="login" type="text" class="form-control">
+                    </div>
+                    <!-- пароль -->
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input id="password" type="password" class="form-control">
+                    </div>
+                    <input type="button" onclick="signinUser()" class="btn btn-dark" value="Нажать">
+                    <link value="Зарегистрироваться">
+                    <!-- информация -->
+                    <div class="alert alert-danger d-none" id="alert">
+                        <strong>Внимание!</strong>Не правильно введен логин или пароль!
+                    </div>
+                    <div class="alert alert-success d-none" id="success">
+                        <strong>Внимание!</strong>Все прошло успешно!
+                    </div>
+                </div>
+            </div>        
+        </body>
+    </html>

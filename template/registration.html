@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<Title>LegioLab</Title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="src/static/Bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link rel="shortcut icon" href="src\static\img\LL.ico" type="image/x-icon">
+	<script src="src/static/scripts/utilits.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+	<script src="src/static/Bootstrap/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-xl bg-secondary justify-content-center navbar-dark">
+		<h1 title="Форма регистрации">Регистрация</h1>
+	</nav>
+
+	<div id="regpage" align=center class="container">
+		<div class="form-group">
+			<!--Логин-->
+			<label for="UserName">Имя пользователя</label>
+			<input class="form-control" type="text" id="login" name="login"> </input>
+			<!--Пароль-->
+			<label for="UserPass">Пароль</label>
+			<input class="form-control" type="text" id="pass" name="pass"> </input>
+			<!--Повтор пароля-->
+			<label for="retrypass">Пароль еще раз</label>
+			<input class="form-control" type="text" id="retrypass" name="retrypass"> </input>
+			<!--Адрес почты-->
+			<label for="Mail">Адрес электронной почты</label>
+			<input class="form-control" type="email" id="mail"> </input>
+			<!--Кнопака регистрации-->
+			<button class="btn btn-primary" onclick="registration()">Регистрация</button>
+			<!--<input class="btn btn-primary" type="submit" value="Регистрация">-->
+			<button class="btn btn-danger" href="/">Отмена</button>
+			<!--Сообщение об ошибке-->
+			<div id="error" class="alert alert-danger d-none">
+				<strong>Внимание!</strong> описание ошибки.
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

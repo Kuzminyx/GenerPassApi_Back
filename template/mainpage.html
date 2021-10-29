@@ -1,0 +1,145 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <Title>LegioLab</Title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="src/static/Bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="src\static\img\LL.ico" type="image/x-icon">
+    <!--<script src="src/static/js/gener.js"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="src/static/Bootstrap/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <!--Главное меню-->
+    <nav class="navbar navbar-expand-xl bg-secondary justify-content-center navbar-dark">
+        <ul class="navbar-nav">
+            <!-- <li class="nav-item">
+                <a id="maing" class="nav-link {{.IDmaing}}" href="/">Главная</a>
+            </li> -->
+            <li class="nav-item" id="id_enter">
+                <a id="inner" class="nav-link {{.classname}}" onclick="enter()" href="#">Войти</a>
+            </li>
+            <li class="nav-item" id="id_reg">
+                <a id="reg" class="nav-link {{.classname}}" onclick="reg()" href="#">Зарегистрироваться</a>
+            </li>
+            <!-- <li class="nav-item">
+                <a id="getlist" class="nav-link {{.IDgetlist}}" onclick="getList()" href="#">Показать весь список</a>
+            </li> -->
+            <!-- <li class="nav-item" id="id_exite">
+                <a id="exite" class="nav-link {{.IDexite}}" onclick="exite()" href="#">Выйти</a>
+            </li> -->
+            <!-- <input id="user" class="" value="" type="text" readonly=true> -->
+        </ul>
+    </nav>
+
+    <!--Список новостей/Лента-->
+    <div id="news" align=center class="container {{.classname}}">
+        <h2>Последние новости:</h2>
+        {{range .DataNews}}
+        <div class="card">
+            <div class="card-header">{{.Theme}}</div>
+            <div class="card-body">{{.Bodynews}}
+                <a href="{{.Lincnews}}" class="card-link">Перейти</a>
+            </div>
+        </div>
+        {{end}}
+    </div><br>
+
+    <!--Ввод данных для входа-->
+    <div id="uenter" class="container {{.classname}}">
+        <form align=center class="form-inline">
+            <div class="form-group">
+                <label for="uLogin">Логин:</label>
+                <input class="form-control" type="text" id="uLogin">
+            </div>
+            <div class="form-group">
+                <label for="uPass">Пароль:</label>
+                <input class="form-control" type="password" id="uPass">
+                <br>
+            </div>
+            <button onclick="autorisationUser()" class="btn btn-dark">Войти</button>
+        </form>
+        <!--Алерт если что то пошло не так-->
+        <div id="alert" class="alert alert-danger {{.IDalert}}">
+            <strong>Внимание!</strong>Не верно введен логин или пароль!
+        </div>
+    </div>
+
+    <!--Добавление новой записи в виде модального окна-->
+    <div id="adddiv" class="container {{.IDadddiv}}">
+        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#add">Добавить пароль</button>
+        <div class="modal fade" id="add">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Заполните поля</h4>
+                        <button type="button" class="close" data-dismiss="modal">
+                            x
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!--URL-->
+                        <div class="form-group">
+                            <label for="url">url:</label>
+                            <input class="form-control" type="text" id="url">
+                            <br>
+                        </div>
+                        <!--Логин-->
+                        <div class="form-group">
+                            <label for="login">Логин:</label>
+                            <input class="form-control" type="text" id="login">
+                            <br>
+                        </div>
+                        <!--Длина пароля-->
+                        <div class="form-group">
+                            <label for="passlen">Длина пароля:</label>
+                            <input class="form-control" type="number" min="8" max="15" value="8" id="passlen">
+                            <br>
+                        </div>
+                        <!--Новый пароль-->
+                        <div class="form-group">
+                            <label for="newpass">Новый пароль:</label>
+                            <input class="form-control" type="text" id="newpass">
+                            <br>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <!--Генерировать пароль-->
+                        <button class="btn btn-dark" onclick="createUniqPass()">Генерировать</button>
+                        <!--Сохранить-->
+                        <button class="btn btn-primary" onclick="savePass()">Сохранить</button>
+                        <!--Закрыть-->
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Закрыть</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!--Весь список паролей если пользователь авторизирован-->
+    <div id="table" class="container {{.IDtable}}">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>URL</th>
+                    <th>Login</th>
+                    <th>Pass</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Что то 1</td>
+                    <td>Что то 2</td>
+                    <td>Что то 3</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
