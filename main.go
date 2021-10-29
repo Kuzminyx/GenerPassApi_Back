@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -42,6 +43,7 @@ func main() {
 		Handler: router,
 	}
 
+	fmt.Println("Запущен сервер на порту 9000...")
 	go server.ListenAndServe()
 
 	// Wait for an interrupt
