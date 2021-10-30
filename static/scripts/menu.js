@@ -4,8 +4,9 @@ function signinUser() {
     var login = $('#login').val();
     var pass = $('#password').val();
 
-    var txt = window.btoa(pass + "/" + login + "/" + hour);
-    var dataVal = JSON.stringify({ "codetxt": txt });
+    //var txt = window.btoa(pass + "/" + login + "/" + hour);
+    //var dataVal = JSON.stringify({ "codetxt": txt });
+    var dataVal = JSON.stringify({ "user": login, "pass": pass });
     sendMsgonServer("/signIn", dataVal, "GET");
 }
 
