@@ -39,11 +39,11 @@ func main() {
 	router.Handle("/gener", apihandler(ghandlers.Gener))
 
 	server := &http.Server{
-		Addr:    ":9000",
+		Addr:    ":8080",
 		Handler: router,
 	}
 
-	fmt.Println("Запущен сервер на порту 9000...")
+	fmt.Println("Запущен сервер на порту 8080...")
 	go server.ListenAndServe()
 
 	// Wait for an interrupt
