@@ -47,12 +47,11 @@ func Getid(w http.ResponseWriter, r *http.Request) {
 
 	alert := jsonquery.Decode(&user)
 
-	fmt.Println(user)
-
 	if alert != nil {
 		resp.Msg = alert.Error()
 		resp.Status = "error"
 		utility.SendJSON(w, resp, 500)
+		fmt.Println(alert.Error())
 		return
 	}
 
@@ -65,6 +64,7 @@ func Getid(w http.ResponseWriter, r *http.Request) {
 		resp.Msg = err.Error()
 		resp.Status = "error"
 		utility.SendJSON(w, resp, 500)
+		fmt.Println(err.Error())
 		return
 	}
 

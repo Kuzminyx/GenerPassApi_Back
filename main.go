@@ -21,12 +21,12 @@ func main() {
 	router := http.NewServeMux()
 
 	//Site routes
-	fs := http.FileServer(http.Dir("static"))
-	router.Handle("/static/", http.StripPrefix("/static/", fs))
+	// fs := http.FileServer(http.Dir("static"))
+	// router.Handle("/static/", http.StripPrefix("/static/", fs))
 
-	router.HandleFunc("/", ghandlers.OpenIndex)            //Ввод логина и пароля
-	router.Handle("/main", apihandler(ghandlers.OpenMain)) //ЛК пользователя
-	router.HandleFunc("/signIn", ghandlers.SignIn)         //Обертка для проверки учетки с веб клиента
+	// router.HandleFunc("/", ghandlers.OpenIndex)            //Ввод логина и пароля
+	// router.Handle("/main", apihandler(ghandlers.OpenMain)) //ЛК пользователя
+	// router.HandleFunc("/signIn", ghandlers.SignIn)         //Обертка для проверки учетки с веб клиента
 
 	//API routes
 	router.HandleFunc("/getid", ghandlers.Getid)
@@ -39,7 +39,7 @@ func main() {
 	router.Handle("/gener", apihandler(ghandlers.Gener))
 
 	server := &http.Server{
-		Addr:    ":80",
+		Addr:    ":9000",
 		Handler: router,
 	}
 
@@ -73,6 +73,8 @@ func (api apihandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		resp.Msg = alert.Error()
 		resp.Status = "error"
 		utility.SendJSON(w, resp, 500)
+		fmt.Println(alert.Error())
+		return
 	}
 
 	if clientreq.ID != "" {

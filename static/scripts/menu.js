@@ -1,22 +1,29 @@
 function signinUser() {
-    var datenow = new Date;
-    var hour = datenow.getHours();
+
     var login = $('#login').val();
     var pass = $('#password').val();
 
     //var txt = window.btoa(pass + "/" + login + "/" + hour);
     //var dataVal = JSON.stringify({ "codetxt": txt });
     var dataVal = JSON.stringify({ "user": login, "pass": pass });
-    sendMsgonServer("/signIn", dataVal, "GET");
+    sendMsgOnServer("/signIn", dataVal, "POST");
 }
 
-function sendMsgonServer(url, dataform, typeform){
+function sendMsgOnServer(url, dataform, typeform){
     $.ajax({
         url: url,
         async: true,
         contentType: "application/json",
         data: dataform,
         type: typeform,
-        complete: function completesend(msg, status) { alert(msg); if (status == "success") { window.location.href = "/main"; } else { $("#alert").removeClass("d-none") } }
+        complete: completesend(msg, status) 
     });
+}
+
+function completesend(msg, status) { 
+    alert(msg); 
+    if (status == "success") 
+        { window.location.href = "/main"; } 
+    else 
+        { $("#alert").removeClass("d-none")}
 }
