@@ -44,6 +44,8 @@ func Getid(w http.ResponseWriter, r *http.Request) {
 	user := User{}
 	jsonquery := json.NewDecoder(r.Body)
 
+	fmt.Println(r.Body)
+
 	fmt.Println(jsonquery)
 
 	alert := jsonquery.Decode(&user)
