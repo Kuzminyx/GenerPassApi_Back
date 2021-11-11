@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"text/template"
 	"time"
 
 	gsql "github.com/GeneratePassAPI/bin/bd"
@@ -86,7 +85,7 @@ func Findid(w http.ResponseWriter, id string) string {
 
 	user, istrue := active[id]
 
-	if istrue != true {
+	if istrue {
 		return result
 	}
 
@@ -237,27 +236,4 @@ func Gener(w http.ResponseWriter, r *http.Request, clientdata JSONclient) {
 		return
 	}
 	utility.SendJSON(w, utility.Response{Status: "Ok", IsArray: false, Arraymsg: nil, Msg: code}, 200)
-}
-
-//OpenIndex = обработаем роут на главную страницу ...
-func OpenIndex(w http.ResponseWriter, r *http.Request) {
-	tmpl, alert := template.ParseFiles("template/signin.html")
-	if alert != nil {
-		fmt.Printf(alert.Error())
-	}
-	tmpl.Execute(w, nil)
-}
-
-//OpenMain - открываем основную страницу ...
-func OpenMain(w http.ResponseWriter, r *http.Request, clientdata JSONclient) {
-	tmpl, alert := template.ParseFiles("template/main.html")
-	if alert != nil {
-		fmt.Printf(alert.Error())
-	}
-	tmpl.Execute(w, nil)
-}
-
-//SignIn - Логинимся ...
-func SignIn(w http.ResponseWriter, r *http.Request) {
-	Getid(w, r)
 }

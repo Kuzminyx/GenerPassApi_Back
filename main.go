@@ -20,14 +20,6 @@ func main() {
 
 	router := http.NewServeMux()
 
-	//Site routes
-	// fs := http.FileServer(http.Dir("static"))
-	// router.Handle("/static/", http.StripPrefix("/static/", fs))
-
-	// router.HandleFunc("/", ghandlers.OpenIndex)            //Ввод логина и пароля
-	// router.Handle("/main", apihandler(ghandlers.OpenMain)) //ЛК пользователя
-	// router.HandleFunc("/signIn", ghandlers.SignIn)         //Обертка для проверки учетки с веб клиента
-
 	//API routes
 	router.HandleFunc("/getid", ghandlers.Getid)
 	router.HandleFunc("/adduser", ghandlers.CreateNewUser)
@@ -39,7 +31,7 @@ func main() {
 	router.Handle("/gener", apihandler(ghandlers.Gener))
 
 	server := &http.Server{
-		Addr:    ":9000",
+		Addr:    ":80",
 		Handler: router,
 	}
 
