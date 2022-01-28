@@ -32,7 +32,7 @@ func GenerateUID() string {
 
 //SendJSON - форимруем и отправляем JSON на клиент ...
 func SendJSON(w http.ResponseWriter, msg Response, code int) {
-	log.Println(msg.Status)
+	//log.Println(msg.Status)
 	w.WriteHeader(code)
 	encode := json.NewEncoder(w)
 	encode.Encode(msg)

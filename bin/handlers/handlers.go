@@ -92,22 +92,25 @@ func Findid(w http.ResponseWriter, id string) string {
 	user, istrue := active[id]
 
 	if istrue {
+
+		activatetime := user.ActivateTime
+
+		delta := activatetime.Sub(time.Now()) / 86400000000000
+
+		if delta > 3 {
+			delete(active, id)
+			return result
+		}
+
+		result = user.UID
+
 		return result
-	}
 
-	activatetime := user.ActivateTime
+	} else {
 
-	delta := activatetime.Sub(time.Now()) / 86400000000000
-
-	if delta > 3 {
-		delete(active, id)
 		return result
+
 	}
-
-	result = user.UID
-
-	return result
-
 }
 
 //Watchid - найти и посмотреть текущий ID ...
