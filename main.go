@@ -64,7 +64,7 @@ func (api apihandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		resp.IsArray = false
 		resp.Msg = alert.Error()
 		resp.Status = "error"
-		utility.SendJSON(w, resp, 500)
+		utility.SendJSON(w, resp, 400)
 		fmt.Println(alert.Error())
 		return
 	}
@@ -83,6 +83,6 @@ func (api apihandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		resp.IsArray = false
 		resp.Msg = msg
 		resp.Status = "error"
-		utility.SendJSON(w, resp, 404)
+		utility.SendJSON(w, resp, 401)
 	}
 }

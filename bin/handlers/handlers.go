@@ -44,18 +44,12 @@ func Getid(w http.ResponseWriter, r *http.Request) {
 	user := User{}
 	jsonquery := json.NewDecoder(r.Body)
 
-	fmt.Println(r.Body)
-
-	fmt.Println(jsonquery)
-
 	alert := jsonquery.Decode(&user)
-
-	fmt.Println(&user)
 
 	if alert != nil {
 		resp.Msg = alert.Error()
 		resp.Status = "error"
-		utility.SendJSON(w, resp, 500)
+		utility.SendJSON(w, resp, 400)
 		fmt.Println(alert.Error())
 		return
 	}
@@ -68,7 +62,7 @@ func Getid(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		resp.Msg = err.Error()
 		resp.Status = "error"
-		utility.SendJSON(w, resp, 500)
+		utility.SendJSON(w, resp, 401)
 		fmt.Println(err.Error())
 		return
 	}
@@ -123,7 +117,6 @@ func Watchid(w http.ResponseWriter, r *http.Request, clientdata JSONclient) {
 func Write(w http.ResponseWriter, r *http.Request, clientdata JSONclient) {
 
 	resp := utility.Response{Status: "Ok", IsArray: false}
-	code := 200
 
 	dbdata := gsql.DBselector{}
 	initSelector(clientdata, &dbdata)
@@ -132,13 +125,12 @@ func Write(w http.ResponseWriter, r *http.Request, clientdata JSONclient) {
 	if err != nil {
 		resp.Msg = err.Error()
 		resp.Status = "error"
-		code = 500
-		utility.SendJSON(w, resp, code)
+		utility.SendJSON(w, resp, 500)
 		return
 	}
 
 	resp.Msg = "Ok"
-	utility.SendJSON(w, resp, code)
+	utility.SendJSON(w, resp, 200)
 
 }
 
@@ -153,7 +145,7 @@ func CreateNewUser(w http.ResponseWriter, r *http.Request) {
 	if alert != nil {
 		resp.Msg = alert.Error()
 		resp.Status = "error"
-		utility.SendJSON(w, resp, 500)
+		utility.SendJSON(w, resp, 400)
 		return
 	}
 
@@ -167,7 +159,7 @@ func CreateNewUser(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		resp.Msg = err.Error()
 		resp.Status = "error"
-		utility.SendJSON(w, resp, 500)
+		utility.SendJSON(w, resp, 400)
 		return
 	}
 
@@ -194,8 +186,7 @@ func List(w http.ResponseWriter, r *http.Request, clientdata JSONclient) {
 		resp.IsArray = false
 		resp.Status = "error"
 		resp.Msg = err.Error()
-		code := 500
-		utility.SendJSON(w, resp, code)
+		utility.SendJSON(w, resp, 500)
 		return
 	}
 
@@ -211,7 +202,7 @@ func Change(w http.ResponseWriter, r *http.Request, clientdata JSONclient) {
 	initSelector(clientdata, &dbdata)
 	alert := dbdata.Upd()
 	if alert != nil {
-		utility.SendJSON(w, utility.Response{Status: "error", IsArray: false, Arraymsg: nil, Msg: alert.Error()}, 405)
+		utility.SendJSON(w, utility.Response{Status: "error", IsArray: false, Arraymsg: nil, Msg: alert.Error()}, 500)
 		return
 	}
 	utility.SendJSON(w, utility.Response{Status: "Ok", IsArray: false, Arraymsg: nil, Msg: "Ok"}, 200)
@@ -223,7 +214,7 @@ func Delete(w http.ResponseWriter, r *http.Request, clientdata JSONclient) {
 	initSelector(clientdata, &dbdata)
 	alert := dbdata.Del()
 	if alert != nil {
-		utility.SendJSON(w, utility.Response{Status: "error", IsArray: false, Arraymsg: nil, Msg: alert.Error()}, 405)
+		utility.SendJSON(w, utility.Response{Status: "error", IsArray: false, Arraymsg: nil, Msg: alert.Error()}, 500)
 		return
 	}
 	utility.SendJSON(w, utility.Response{Status: "Ok", IsArray: false, Arraymsg: nil, Msg: "Ok"}, 200)
